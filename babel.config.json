@@ -1,0 +1,30 @@
+{
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "targets": {
+          "node": "current"
+        }
+      }
+    ],
+    "@babel/preset-typescript"
+  ],
+  "plugins": [
+    ["@babel/plugin-proposal-decorators", { "legacy": true }],
+    ["@babel/plugin-proposal-class-properties"],
+    [
+      "module-resolver",
+      {
+        "alias": {
+          "@shared": "./src/shared",
+          "@structs": "./src/structs",
+          "@modules": "./src/modules",
+          "@entities": "./src/database/entities",
+          "@redis": "./src/redis"
+        }
+      }
+    ]
+  ],
+  "ignore": ["**/*.spec.ts"]
+}
