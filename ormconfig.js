@@ -9,7 +9,7 @@ module.exports = [
     username: process.env.DB_USER,
     password: process.env.PASSWORD,
     database: "my_next_book",
-    entities: ["dist/database/entities/*.{js,ts}"],
+    entities: ["src/database/entities/*.{js,ts}"],
     synchronize: true,
   },
 ];

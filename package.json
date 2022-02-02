@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "serve:watch": "wait-on dist/index.js && nodemon dist/index.js",
     "build:watch": "babel src --extensions \".js,.ts\" --watch --out-dir dist --copy-files --no-copy-ignored",
-    "dev": "concurrently \"npm run serve:watch\" \"npm run build:watch\""
+    "dev-js": "concurrently \"npm run serve:watch\" \"npm run build:watch\"",
+    "dev": "ts-node-dev -r tsconfig-paths/register --ignore-watch node_modules src/index.ts"
   },
   "keywords": [],
   "author": "",
@@ -37,6 +38,7 @@
     "eslint-plugin-prettier": "^3.4.0",
     "nodemon": "^2.0.12",
     "prettier": "^2.3.2",
+    "ts-node-dev": "^1.1.8",
     "tsconfig-paths": "^3.10.1",
     "typescript": "^4.3.5",
     "wait-on": "^6.0.0"
