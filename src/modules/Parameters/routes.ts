@@ -4,7 +4,11 @@ import express from "express";
 const router = express.Router();
 
 router.get("/", async (_req, res) => {
-  const data = await Parameter.find();
+  const data = await Parameter.find({
+    order: {
+      parameterOrder: "ASC",
+    },
+  });
 
   res.json(data);
 });
