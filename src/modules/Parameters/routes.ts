@@ -1,16 +1,16 @@
-import { DescriptorType } from "@entities/DescriptorType";
+import { Parameter } from "@entities/Parameters";
 import express from "express";
 
 const router = express.Router();
 
 router.get("/", async (_req, res) => {
-  const data = await DescriptorType.find();
+  const data = await Parameter.find();
 
   res.json(data);
 });
 
 router.get("/:descriptorId", async (req, res) => {
-  const data = await DescriptorType.findOne(req.params.descriptorId, {
+  const data = await Parameter.findOne(req.params.descriptorId, {
     relations: ["values"],
   });
 

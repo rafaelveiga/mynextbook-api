@@ -8,19 +8,16 @@ import {
 import { BookParameter } from "./BookParameter";
 
 @Entity()
-export class Book extends BaseEntity {
+export class Parameter extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
   @Column({ type: "varchar", length: 255 })
-  title: string;
+  parameter: string;
 
   @Column({ type: "varchar", length: 255 })
-  isbn: string;
-
-  @Column({ type: "varchar", length: 255 })
-  author: string;
+  parameterDescription: string;
 
   @OneToMany(() => BookParameter, (bookParameter) => bookParameter.parameter)
-  bookDescriptors: BookParameter[];
+  values: BookParameter[];
 }

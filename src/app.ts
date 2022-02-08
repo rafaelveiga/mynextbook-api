@@ -1,6 +1,7 @@
 import express from "express";
+import cors from "cors";
 
-import descriptorsRouter from "@modules/DescriptorTypes/routes";
+import parametersRouter from "@modules/Parameters/routes";
 
 class App {
   public express: express.Application;
@@ -13,10 +14,11 @@ class App {
 
   private middlewares(): void {
     this.express.use(express.json());
+    this.express.use(cors());
   }
 
   private routes(): void {
-    this.express.use("/descriptors", descriptorsRouter);
+    this.express.use("/parameters", parametersRouter);
   }
 }
 

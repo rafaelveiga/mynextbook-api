@@ -18,7 +18,7 @@ export const Application = async () => {
 export const runServer = async () => {
   try {
     dotenv.config();
-    const port = process.env.HTTP_PORT || "3000";
+    const port = process.env.HTTP_PORT || "3001";
     const app = await Application();
     app.listen(port, () => console.log(`Server is running on port ${port}`));
   } catch (error) {
