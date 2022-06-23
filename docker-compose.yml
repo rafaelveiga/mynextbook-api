@@ -27,7 +27,7 @@ services:
     env_file:
       - .env
     ports:
-      - 3001:3001
+      - 4000:4000
     links:
       - db
     volumes:

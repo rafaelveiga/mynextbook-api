@@ -1,24 +1,57 @@
 import express from "express";
-import cors from "cors";
-
-import parametersRouter from "@modules/Parameters/routes";
+import { createConnection } from "typeorm";
+import { ApolloServer } from "apollo-server-express";
+import { ApolloServerPluginDrainHttpServer, gql } from "apollo-server-core";
+import http from "http";
+import { parameterResolver } from "@modules/Parameters/routes";
 
 class App {
   public express: express.Application;
 
   public constructor() {
+    this.start();
+  }
+
+  public async start(): Promise<void> {
+    await createConnection();
+
     this.express = express();
-    this.middlewares();
-    this.routes();
-  }
+    const httpServer = http.createServer(this.express);
 
-  private middlewares(): void {
-    this.express.use(express.json());
-    this.express.use(cors());
-  }
+    const server = new ApolloServer({
+      typeDefs: gql`
+        type Parameter {
+          id: Int
+          parameter: String
+          parameterDescription: String
+          parameterOrder: Int
+        }
 
-  private routes(): void {
-    this.express.use("/parameters", parametersRouter);
+        type Query {
+          parameters: [Parameter]
+        }
+      `,
+      resolvers: {
+        Query: {
+          parameters: async () => {
+            return await parameterResolver();
+          },
+        },
+      },
+      csrfPrevention: true,
+      cache: "bounded",
+      plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
+    });
+
+    await server.start();
+
+    server.applyMiddleware({ app: this.express });
+
+    await new Promise<void>((resolve) =>
+      httpServer.listen({ port: 4000 }, resolve)
+    );
+
+    console.log(`🚀 Server ready at 4000${server.graphqlPath}`);
   }
 }
 
