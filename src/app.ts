@@ -4,6 +4,7 @@ import { ApolloServer } from "apollo-server-express";
 import { ApolloServerPluginDrainHttpServer, gql } from "apollo-server-core";
 import http from "http";
 import { parameterResolver } from "@modules/Parameters/routes";
+import typeDefs from "./typeDefs";
 
 class App {
   public express: express.Application;
@@ -19,18 +20,7 @@ class App {
     const httpServer = http.createServer(this.express);
 
     const server = new ApolloServer({
-      typeDefs: gql`
-        type Parameter {
-          id: Int
-          parameter: String
-          parameterDescription: String
-          parameterOrder: Int
-        }
-
-        type Query {
-          parameters: [Parameter]
-        }
-      `,
+      typeDefs,
       resolvers: {
         Query: {
           parameters: async () => {
