@@ -7,8 +7,10 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "serve:watch": "wait-on dist/index.js && nodemon dist/index.js",
     "build:watch": "babel src --extensions \".js,.ts\" --watch --out-dir dist --copy-files --no-copy-ignored",
+    "build": "babel src --extensions \".js,.ts\" --out-dir dist --copy-files --no-copy-ignored",
     "dev-js": "concurrently \"npm run serve:watch\" \"npm run build:watch\"",
-    "dev": "ts-node-dev -r tsconfig-paths/register --ignore-watch node_modules src/index.ts"
+    "dev": "ts-node-dev --exit-child --poll --respawn --transpile-only --no-deps --ignore-watch dist --ignore-watch node_modules --inspect=0.0.0.0:7001 -r tsconfig-paths/register src/index.ts",
+    "start": "node dist/index.js"
   },
   "keywords": [],
   "author": "",
