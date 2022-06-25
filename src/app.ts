@@ -3,8 +3,9 @@ import { createConnection } from "typeorm";
 import { ApolloServer } from "apollo-server-express";
 import { ApolloServerPluginDrainHttpServer, gql } from "apollo-server-core";
 import http from "http";
-import { parameterResolver } from "@modules/Parameters/routes";
+import { parameterResolver } from "@modules/Parameters";
 import typeDefs from "./typeDefs";
+import { bookResolver } from "@modules/Books";
 
 class App {
   public express: express.Application;
@@ -25,6 +26,9 @@ class App {
         Query: {
           parameters: async () => {
             return await parameterResolver();
+          },
+          books: async () => {
+            return await bookResolver();
           },
         },
       },

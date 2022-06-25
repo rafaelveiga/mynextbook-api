@@ -8,7 +8,15 @@ export default gql`
     parameterOrder: Int
   }
 
+  type Book {
+    id: Int
+    title: String
+    isbn: String
+    author: String
+  }
+
   type Query {
     parameters: [Parameter]
+    books: [Book]
   }
 `;
