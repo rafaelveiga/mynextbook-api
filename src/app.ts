@@ -1,7 +1,7 @@
 import express from "express";
 import { createConnection } from "typeorm";
 import { ApolloServer } from "apollo-server-express";
-import { ApolloServerPluginDrainHttpServer, gql } from "apollo-server-core";
+import { ApolloServerPluginDrainHttpServer } from "apollo-server-core";
 import http from "http";
 import { parameterResolver } from "@modules/Parameters";
 import typeDefs from "./typeDefs";
