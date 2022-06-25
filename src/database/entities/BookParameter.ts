@@ -16,7 +16,7 @@ export class BookParameter extends BaseEntity {
   @ManyToOne(() => Book, (book) => book.bookDescriptors)
   book: Book;
 
-  @ManyToOne(() => Parameter, (parameter) => parameter.values)
+  @ManyToOne(() => Parameter, (parameter) => parameter.values, { eager: true })
   parameter: Parameter;
 
   @Column({ type: "varchar", length: 255 })
