@@ -27,8 +27,8 @@ class App {
           parameters: async () => {
             return await parameterResolver();
           },
-          books: async () => {
-            return await bookResolver();
+          books: async (_parent, args) => {
+            return await bookResolver(args);
           },
         },
       },

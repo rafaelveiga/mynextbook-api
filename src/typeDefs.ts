@@ -24,6 +24,12 @@ export default gql`
 
   type Query {
     parameters: [Parameter]
-    books: [Book]
+    books(parameterPair: [ParameterPair]): [Book]
+  }
+
+  scalar ParameterPair
+  {
+    parameterId: string
+    parameterValue: String
   }
 `;
