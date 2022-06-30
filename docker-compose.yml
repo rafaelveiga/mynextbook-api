@@ -34,8 +34,7 @@ services:
       - /usr/app/node_modules
       - .:/usr/app
     depends_on:
-      db:
-        condition: service_healthy
+      - db
 
 volumes:
   db:

@@ -16,6 +16,9 @@ export class Parameter extends BaseEntity {
   parameter: string;
 
   @Column({ type: "varchar", length: 255 })
+  parameterSlug: string;
+
+  @Column({ type: "varchar", length: 255 })
   parameterDescription: string;
 
   @Column({ type: "int" })
